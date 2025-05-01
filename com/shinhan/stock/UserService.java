@@ -19,17 +19,22 @@ public class UserService {
     }
 
     // 잔액 조회
-    public double getBalance(int userId) {
-        return userDAO.getBalance(userId);  // DB에서 잔액 조회
+    public double getBalance(int user_id) {
+        return userDAO.getBalance(user_id);  // DB에서 잔액 조회
     }
 
     // 입금
-    public boolean deposit(int userId, double amount) {
-        return userDAO.deposit(userId, amount);  // DB에서 잔액 업데이트
+    public boolean deposit(int user_id, double amount) {
+        return userDAO.deposit(user_id, amount);  // DB에서 잔액 업데이트
     }
 
     // 출금
-    public boolean withdraw(int userId, double amount) {
-        return userDAO.withdraw(userId, amount);  // DB에서 잔액 업데이트
+    public boolean withdraw(int user_id, double amount) {
+        return userDAO.withdraw(user_id, amount);  // DB에서 잔액 업데이트
     }
+
+	public void updateBalance(int userId, double totalSaleAmount) {
+		// TODO Auto-generated method stub
+		
+	}
 }

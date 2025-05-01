@@ -3,6 +3,9 @@ package com.shinhan.stock;
 import java.sql.*;
 
 public class UserDAO {
+	   private Connection getConnection() throws SQLException {
+	        return DBUtil.getConnection();  // DBUtil에서 연결을 가져옴
+	   }
 
     // 새로운 사용자 추가 (UserDTO 객체를 받아서 처리)
     public boolean insertUser(UserDTO user) {
@@ -115,7 +118,7 @@ public class UserDAO {
         return updateBalance(user_id, newBalance);
     }
 
-    // 출금하기
+ // 출금하기
     public boolean withdraw(int user_id, double amount) {
         if (amount <= 0) {
             System.out.println("출금 금액은 0보다 커야 합니다.");
@@ -124,17 +127,12 @@ public class UserDAO {
 
         // 현재 잔액 조회
         double currentBalance = getBalance(user_id);
-
-        // 잔액이 부족하면 출금 불가
-        if (currentBalance < amount) {
-            System.out.println("잔액이 부족합니다.");
-            return false;
-        }
-
-        // 출금 후 새로운 잔액 계산
         double newBalance = currentBalance - amount;
 
         // 잔액 업데이트
         return updateBalance(user_id, newBalance);
     }
+
+
+
 }

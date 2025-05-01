@@ -1,46 +1,71 @@
 package com.shinhan.stock;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor  // 모든 필드를 포함한 생성자를 Lombok으로 생성
 public class StockDTO {
-    private String stockCode;
-    private String stockName;
-    private double stockPrice;
-    private int stockQuantity; // 주식의 수량 (매수/매도 관련)
+    private String stockTicker;  // 주식 티커
+    private String stockName;    // 주식 이름 추가
+    private double price;        // 주식 가격
+    private int quantity;        // 주식 수량
+    private String stockId;
 
-    // 보유 주식 조회 시 사용할 생성자 (stockCode, stockName, stockQuantity만 받는 생성자)
-    public StockDTO(String stockCode, String stockName, int stockQuantity) {
-        this.stockCode = stockCode;
+    // 기본 생성자
+    public StockDTO() {}
+
+    // 생성자
+    public StockDTO(String stockTicker, String stockName, double price, int quantity) {
+        this.stockTicker = stockTicker;
         this.stockName = stockName;
-        this.stockQuantity = stockQuantity;
+        this.price = price;
+        this.quantity = quantity;
     }
 
-    // 주식 매수 메소드
-    public void buyStock(int quantity) {
-        this.stockQuantity += quantity; // 매수 시 수량 증가
+    // getter, setter
+    public String getStockTicker() {
+        return stockTicker;
     }
 
-    // 주식 매도 메소드
-    public void sellStock(int quantity) {
-        if (this.stockQuantity >= quantity) {
-            this.stockQuantity -= quantity; // 매도 시 수량 감소
-        } else {
-            System.out.println("매도할 주식이 부족합니다.");
-        }
+    public void setStockTicker(String stockTicker) {
+        this.stockTicker = stockTicker;
     }
 
-    // 주식 정보 출력 메소드
-    public void displayStockInfo() {
-        System.out.println("주식 코드: " + stockCode);
-        System.out.println("주식 이름: " + stockName);
-        System.out.println("주식 가격: " + stockPrice);
-        System.out.println("보유 수량: " + stockQuantity);
+    public String getStockName() {  // 추가된 getter
+        return stockName;
+    }
+
+    public void setStockName(String stockName) {  // 추가된 setter
+        this.stockName = stockName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getStockId() {
+        return stockId;
+    }
+
+    public void setStockId(String stockId) {
+        this.stockId = stockId;
+    }
+
+    @Override
+    public String toString() {
+        return "StockDTO{" +
+               "stockTicker='" + stockTicker + '\'' +
+               ", stockName='" + stockName + '\'' +  // 추가된 부분
+               ", price=" + price +
+               ", quantity=" + quantity +
+               '}';
     }
 }
